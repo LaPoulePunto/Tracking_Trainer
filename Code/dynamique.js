@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var GIF_countdown = document.getElementById("GIF_countdown");
 
     var temps = 0;
-    var isMoving = false; // Variable pour suivre l'état du mouvement
+    var isMoving = false; 
     const maxX =window.innerWidth;
     const maxY =window.innerHeight;
     var x = window.innerWidth/2;
@@ -23,11 +23,11 @@ document.addEventListener("DOMContentLoaded", function() {
             var estDansLaBorne = false;
             
             var maxIterations = 100; 
-            var iterations = 0; // Compteur d'itérations
+            var iterations = 0; 
 
             while (!estDansLaBorne && iterations < maxIterations) {
-                var ajoutX = parseFloat((Math.random() * 100).toFixed());
-                var ajoutY = parseFloat((Math.sqrt(1000 - ajoutX * ajoutX)).toFixed());
+                var ajoutX = parseFloat((Math.random() * 3).toFixed());
+                var ajoutY = parseFloat((Math.sqrt(9 - ajoutX * ajoutX)).toFixed());
             
                 if (Math.random() < 0.5) {
                     ajoutX = -ajoutX;
@@ -37,16 +37,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
 
                 if (x + ajoutX < maxX && y + ajoutY < maxY && x + ajoutX >= 0 && y + ajoutY >= 0) {
-                    for (let i=1; i<=100; i++) {
-                        setTimeout(function() {
-                            circle.style.left = x + ajoutX*(i/100) + "px";
-                            circle.style.top = y + ajoutY*(i/100) + "px";
-                            }, 10*(i-1));
-                         console.log(i-1);
-                    }
+                    circle.style.left = x + ajoutX + "px";
+                    circle.style.top = y + ajoutY + "px";
                     estDansLaBorne = true;
                 }
-                iterations++;
+                iterations++;   
             }
             x += ajoutX;
             y += ajoutY;
@@ -189,10 +184,10 @@ document.addEventListener("DOMContentLoaded", function() {
     function toucheEspace(event) {
         if ((event.code === "Space" && compteur==0) || event.code === "Stop") {
             if (!isMoving) {
-                temps=0;
                 GIF_countdown.style.display = "block";
                 GIF_countdown.src = "countdown.gif";
                 setTimeout(function(){
+                    temps=0;
                     GIF_countdown.src="";
                     GIF_countdown.style.display = "none";
                     isMoving = true;
@@ -246,9 +241,9 @@ document.addEventListener("DOMContentLoaded", function() {
     rayonCercle.addEventListener("input", updateRayon);
     vitesseCercle.addEventListener("input", updateVitesse);
 
-    setInterval(moveCircle, 1000);
+    setInterval(moveCircle, 5);
 //    setInterval(function(){ bougerCercle(25, 5) }, 1000);
-    //setInterval(augmenterTemps, 1000);
+    setInterval(function(){temps+=1;}, 1000);
 });
 
 
