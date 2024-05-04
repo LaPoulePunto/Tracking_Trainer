@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Move Circle</title>
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        #circle {
+            width: 50px;
+            height: 50px;
+            background-color: black;
+            border-radius: 50%;
+            position:absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Déplacer de moitié de sa propre taille */
+        }
+
+        #RayonConteneur, #menu, #Vitesse, #defaite, #conteneurBouton1, #conteneurBouton2 {
+            display: flex;
+            justify-content: center;
+        }
+        
+        #txtRulling {
+            white-space: pre-wrap;
+        }
+
+
+        #conteneurBouton2 {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-60%);
+        }
+
+        #section2 {
+            position: absolute;
+            bottom: -100%; 
+            left: 0;
+            width: 100%;
+            background-color: gray;
+            padding: 20px;
+        }
+
+        #bouton1, #bouton2 {
+            background-color: gray; /* Couleur de fond */
+            border: none; /* Pas de bordure */
+            color: white; /* Couleur du texte */
+            padding: 15px 32px; /* Espacement intérieur */
+            text-align: center; /* Centrer le texte */
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px; /* Taille de police */
+            margin: 10px; /* Marge autour du bouton */
+            cursor: pointer; /* Curseur au survol */
+            border-radius: 5px; /* Coins arrondis */
+        }
+        
+
+        #flecheBas {
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 20px solid gray; /* Même couleur que le bouton */
+            margin-top: 22px; /* Marge au-dessus de la flèche */
+        }
+
+        #flecheHaut {
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 20px solid white;
+            margin-top: 22px;
+        }
+        
+        #GIF_countdown {
+            position:absolute;
+            top:50%;
+            left:10%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            display: none;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="section1">
+        <div id="RayonConteneur">
+            <input type="range" id="rayon" min="1" max="700" />
+            <label for="rayon">Taille</label>
+        </div>
+
+        <div id="Vitesse">
+            <input type="range" id="vitesse" min="1" max="2000" />
+            <label for="vitesse">Vitesse</label>
+        </div>
+
+        <div id="circle"></div>
+
+        <form id="menu">
+            <input type="submit" value="Rejouer">
+        </form>
+        
+        <h1 id="defaite"></h1>
+
+        <script src="dynamique.js"></script>
+
+        <div id="conteneurBouton1">
+            <button onclick="scrollToPage('section2')" id="bouton1">Rulling</button>
+            <div id="flecheBas"></div>
+        </div>
+
+        <img id="GIF_countdown" src="">
+    </div>
+    
+
+
+
+    <div id="section2">
+        <div id="conteneurBouton2">
+            <button onclick="scrollToPage('section1')" id="bouton2">Game</button>
+            <div id="flecheHaut"></div>
+        </div>
+
+        <pre id="txtRulling">
+<h1>Tracking Trainer</h1>
+Bienvenue dans le jeu Tracking Trainer ! Dans ce jeu, votre objectif est de maintenir votre curseur sur un cercle en mouvement le plus longtemps possible. Le défi ? Le cercle rétrécit progressivement au fil du temps pour augmenter la difficulté.
+
+Voici comment jouer : appuyez sur la touche espace pour démarrer un compte à rebours, puis positionnez votre curseur sur le cercle au centre de l'image. Tentez de le suivre du mieux que vous le pouvez !
+
+Lorsque vous perdez, ne vous inquiétez pas ! Il vous suffit de cliquer sur le bouton "Restart" pour remettre le cercle au centre de la page, puis appuyez à nouveau sur la touche espace pour recommencer à jouer.
+
+Ce jeu a été créé par Oscar Neveux, alors amusez-vous bien et défiez-vous pour battre vos propres records !
+        </pre>
+    </div>   
+    
+    <script>
+        function scrollToPage(sectionId){
+            idToGo = document.getElementById(sectionId);
+            idToGo.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>
