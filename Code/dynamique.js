@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if ((event.code === "Space" && compteur==0) || event.code === "Stop") {
             if (!isMoving) {
                 GIF_countdown.style.display = "block";
-                GIF_countdown.src = "countdown.gif";
+                GIF_countdown.src = "Code/countdown.gif";
                 setTimeout(function(){
                     temps=0;
                     GIF_countdown.src="";
